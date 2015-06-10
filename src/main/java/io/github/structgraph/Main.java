@@ -34,7 +34,7 @@ import io.github.structgraph.neo4j.Neo4jSink;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        if (args.length != 2) {
+        if (args.length != 3) {
             printUsage();
             System.exit(1);
         }
@@ -48,7 +48,7 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(db::shutdown));
         Graph.prepareSchema(db);
 
-        ProgressSink sink = new ProgressSink(new Neo4jSink(db, s -> s.startsWith("com.rwe.icon"))) {
+        ProgressSink sink = new ProgressSink(new Neo4jSink(db, s -> s.startsWith(args[2]))) {
 
             @Override
             protected void typesProcessed(int typeCounter) {
@@ -74,6 +74,6 @@ public class Main {
     }
 
     private static void printUsage() {
-        System.err.println("Usage: java -jar structgraph.jar <java archive> <location of neo4j databasee to create>");
+        System.err.println("Usage: java -jar structgraph.jar <java archive> <location of neo4j databasee to create> <package prefix>");
     }
 }
