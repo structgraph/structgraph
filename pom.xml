@@ -97,7 +97,7 @@ limitations under the License.
                             <classpathPrefix>lib</classpathPrefix>
                             <addClasspath>true</addClasspath>
                             <addExtensions>false</addExtensions>
-                            <mainClass>net.dudits.structgraph.Main</mainClass>
+                            <mainClass>io.github.structgraph.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
