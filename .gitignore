@@ -2,3 +2,4 @@
 /*.iml
 *.n4j/
 target/
+.git-private/
