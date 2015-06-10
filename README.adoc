@@ -1,0 +1,48 @@
+= Structgraph
+
+Your application's structure in graph database
+
+== Purpose
+
+Structgraph is simple console application, that walks jar/war/ear archive and
+creates neo4j database representing its structure, annotations and method calls.
+
+== Building
+
+Project can be built with Maven and Java 8.
+
+----
+$ mvn clean install -Pdist
+----
+
+Profile `dist` will copy all runtime dependencies to `target/lib`, and the final
+jar file will put them on its classpath.
+
+== Invoking
+
+----
+java -jar structgraph-1.0-SNAPSHOT.jar <class archive> <database location> <package prefix>
+----
+
+class archive:: any jar, war, or ear file.
+database location:: a non-existing or empty directory where database should be created.
+structgraph currently doesn't support merging data from multiple sources
+package prefix:: classes in this and deeper packages will be processed
+
+== Exploring the database
+
+Download http://neo4j.com/download/[Neo4j], and install it. Then edit file
+`<neo4j home>/conf/neo4j-server.properties`. Change `org.neo4j.server.database.location`
+-- usually the first setting -- to absolute path to the generated database.
+
+Then start the server.
+
+----
+$ bin/neo4j console
+----
+
+And see the console at http://localhost:7474/
+
+== Graph structure
+
+t. b. d.
