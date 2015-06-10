@@ -92,8 +92,8 @@ public class AsmCollectorTest {
         verify(mock).startType(argThat(passes((info) -> {
             assertEquals("java.util.AbstractMap", info.getSuperClassName());
             assertEquals(Collections.singletonList("java.lang.Comparable"), info.getInterfaces());
-            assertEquals(Arrays.asList("java.lang.String", "net.dudits.structgraph.testcode.Inheritance", 
-                        "net.dudits.structgraph.testcode.Inheritance"), info.getGenericTypes());
+            assertEquals(Arrays.asList("java.lang.String", "io.github.structgraph.testcode.Inheritance", 
+                        "io.github.structgraph.testcode.Inheritance"), info.getGenericTypes());
         })));
         verify(mock).startField(argThat(passes((info) -> {
             assertEquals("aMap", info.getName());
