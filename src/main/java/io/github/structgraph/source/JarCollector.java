@@ -73,9 +73,16 @@ public class JarCollector {
         }
     }
 
+    final static String WAR_CLASS_LOCATION  = "WEB-INF/classes/";
+    
     private void processEntry(InputStreamSupplier isProvider, ZipEntry e) throws IOException {
         if (e.getName().endsWith(".class")) {
             String className = e.getName().substring(0, e.getName().lastIndexOf('.'));
+                         
+            if(className.startsWith(WAR_CLASS_LOCATION)){
+                className = className.substring(WAR_CLASS_LOCATION.length());
+            }
+            
             className = Type.getObjectType(className).getClassName();
             if (s.interestedIn(className)) {
                 try (InputStream in = isProvider.get()) {
